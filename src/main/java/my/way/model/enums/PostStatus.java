@@ -1,7 +1,7 @@
 package my.way.model.enums;
 
 /**
- * 文章状态 枚举
+ * 文章状态
  *
  * @author boyiren
  * @date 2019-10-01

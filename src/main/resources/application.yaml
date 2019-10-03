@@ -18,7 +18,7 @@ spring:
   # jpa 配置
   jpa:
     hibernate:
-      ddl-auto: create # create 级别是每次启动项目都会清空数据库的数据
+      ddl-auto: create-drop # create 级别是每次启动项目都会清空数据库的数据
     show-sql: true # 控制台打印 sql 语句
     open-in-view: false
     properties:

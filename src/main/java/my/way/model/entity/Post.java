@@ -5,9 +5,10 @@ import my.way.model.enums.PostStatus;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 /**
- * 文章 实体
+ * 文章
  *
  * @author boyiren
  * @date 2019-10-01
@@ -54,6 +55,12 @@ public class Post {
     private Long likes;
 
     /**
+     * 状态：0-以发布，1-草稿，2-回收，3-私人
+     */
+    @Column(name = "status", columnDefinition = "int default 1")
+    private PostStatus status;
+
+    /**
      * 创建时间
      */
     @Column(name = "create_time", columnDefinition = "timestamp default CURRENT_TIMESTAMP")
@@ -78,14 +85,19 @@ public class Post {
     private boolean disallowComment;
 
     /**
-     * 状态：0-以发布，1-草稿，2-回收，3-私人
+     * 设置外键-目录，目录与文章为一对多关系
      */
-    @Column(name = "status", columnDefinition = "int default 1")
-    private PostStatus status;
+    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
+    @JoinColumn(name = "category_id")
+    private Category category;
 
     /**
-     * 是否被删除
+     * 多对多属性，post-tag
      */
-    @Column(name = "deleted", columnDefinition = "TINYINT default 0")
-    private boolean deleted = false;
+    @ManyToMany
+    @JoinTable(
+            name = "post_tag",
+            joinColumns = @JoinColumn(name = "post_id"),
+            inverseJoinColumns = @JoinColumn(name = "tag_id"))
+    private List<Tag> tagList;
 }
