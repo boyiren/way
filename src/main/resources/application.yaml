@@ -1,0 +1,27 @@
+spring:
+  datasource:
+    # H2 Database 配置，url后面加上 ;AUTO_SERVER=TRUE 可以允许多个链接
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:file:~/.myway/db/myway;AUTO_SERVER=TRUE
+    username: admin
+    password: 123456
+
+  # H2 Database 控制窗口配置（网页打开127.0.0.1:8080/h2-console）
+  # 也可以用 IDEA 连接 H2 Database
+#  h2:
+#    console:
+#      settings:
+#        web-allow-others: true
+#      path: /h2-console
+#      enabled: true
+
+  # jpa 配置
+  jpa:
+    hibernate:
+      ddl-auto: create # create 级别是每次启动项目都会清空数据库的数据
+    show-sql: true # 控制台打印 sql 语句
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true # 格式化控制台打印的 sql 语句
+
