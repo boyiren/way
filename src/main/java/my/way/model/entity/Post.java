@@ -1,6 +1,9 @@
 package my.way.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import my.way.model.enums.PostStatus;
 
 import javax.persistence.*;
@@ -13,7 +16,8 @@ import java.util.List;
  * @author boyiren
  * @date 2019-10-01
  */
-@Data
+@Setter
+@Getter
 @Entity(name = "Post")
 @Table(name = "post")
 public class Post {
@@ -87,7 +91,9 @@ public class Post {
     /**
      * 设置外键-目录，目录与文章为一对多关系
      */
-    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
+    @ManyToOne(
+            cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH},
+            fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
     private Category category;
 

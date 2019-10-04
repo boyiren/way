@@ -1,6 +1,8 @@
 package my.way.model.entity;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.List;
@@ -11,7 +13,8 @@ import java.util.List;
  * @author boyiren
  * @date 2019-10-03
  */
-@Data
+@Setter
+@Getter
 @Entity(name = "Category")
 @Table(name = "category")
 public class Category {
